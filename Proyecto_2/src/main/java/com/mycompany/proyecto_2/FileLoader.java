@@ -6,17 +6,30 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileLoader {
-
-    public void loadFileWithJava7() {
-        File file = new File("/Users/tuxtor/Downloads/linked_list.dot");
-
-        try (FileInputStream fis = new FileInputStream(file)) {
-
-            System.out.println("Total file size to read (in bytes) : " + fis.available());
-
+    /**
+     * 
+     * @param ruta direccion del archivo a leer
+     * @return retorna un cadena con el archivo completo para mostrarlo en un text area
+     */
+    public String showInScreen(String ruta) {
+        String cadena="";
+        File file = new File(ruta);
+        try (FileInputStream fis = new FileInputStream(file)) {            
             int content;
-            while ((content = fis.read()) != -1) {
-                // convert to char and display it
+            while ((content = fis.read()) != -1) {                                
+                cadena+=(char) content;
+            }
+            return cadena;
+        } catch (IOException e) {
+            return e.toString();
+        }
+    }
+    
+    public void loadFileWithJava7(String ruta) {
+        File file = new File(ruta);
+        try (FileInputStream fis = new FileInputStream(file)) {            
+            int content;
+            while ((content = fis.read()) != -1) {              
                 System.out.print((char) content);
             }
 
@@ -24,7 +37,7 @@ public class FileLoader {
             e.printStackTrace();
         }
     }
-
+    
     public void writeUsingFileWriter(String data) {
         File file = new File("/Users/tuxtor/Downloads/salida.txt");
 
