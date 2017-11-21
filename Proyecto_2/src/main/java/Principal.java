@@ -2,6 +2,7 @@
 import com.mycompany.proyecto_2.FileLoader;
 import java.io.FilenameFilter;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.commons.io.filefilter.FileFileFilter;
 
@@ -10,7 +11,6 @@ import org.apache.commons.io.filefilter.FileFileFilter;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author walte
@@ -18,7 +18,8 @@ import org.apache.commons.io.filefilter.FileFileFilter;
 public class Principal extends javax.swing.JFrame {
 
     private String ruta;
-    private FileNameExtensionFilter filter = new FileNameExtensionFilter("archivos permitidos", "txt","dot");
+    private FileNameExtensionFilter filter = new FileNameExtensionFilter("archivos permitidos", "txt", "dot", "docx");
+
     public Principal() {
         initComponents();
     }
@@ -39,6 +40,8 @@ public class Principal extends javax.swing.JFrame {
         btm_aceptar = new javax.swing.JButton();
         btm_salir = new javax.swing.JButton();
         textArea1 = new java.awt.TextArea();
+        txt_rutaguardado = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,26 +70,36 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btm_salir.setText("Salir");
+        btm_salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btm_salirActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Ingrese la direccion de guardado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(textArea1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textArea1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(txt_ruta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btm_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                         .addComponent(btm_aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                    .addComponent(txt_rutaguardado)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -102,8 +115,12 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(txt_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textArea1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
+                .addComponent(textArea1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt_rutaguardado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btm_aceptar)
                     .addComponent(btm_salir))
@@ -113,25 +130,36 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
-     * crea el objeto que hace posible la exploracion de archivos
-     * muestra el contenido del archivo seleccionado en el text area
-     * @param evt 
+     * crea el objeto que hace posible la exploracion de archivos muestra el
+     * contenido del archivo seleccionado en el text area
+     *
+     * @param evt
      */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFileChooser filechoose = new JFileChooser();
         filechoose.setFileFilter(filter);
         int opcion = filechoose.showOpenDialog(this);
-        if(opcion == JFileChooser.APPROVE_OPTION){
+        if (opcion == JFileChooser.APPROVE_OPTION) {
             ruta = filechoose.getSelectedFile().getPath();
             txt_ruta.setText(ruta);
-        }       
+        }
         FileLoader obj = new FileLoader();
         textArea1.setText(obj.showInScreen(ruta));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btm_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btm_aceptarActionPerformed
-        // TODO add your handling code here:
+        //JOptionPane.showMessageDialog(null,"Debe llenar todos los campos");
+        if (txt_rutaguardado.getText().length() == 0 || txt_ruta.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "debe llenar todos los campos");
+        } else {
+            FileLoader obj = new FileLoader();
+            obj.loadFileWithJava7(ruta, txt_rutaguardado.getText());
+        }
     }//GEN-LAST:event_btm_aceptarActionPerformed
+
+    private void btm_salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btm_salirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btm_salirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,7 +192,6 @@ public class Principal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Principal().setVisible(true);
-                new Principal().setLocationRelativeTo(null);
             }
         });
     }
@@ -175,7 +202,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private java.awt.TextArea textArea1;
     private javax.swing.JTextField txt_ruta;
+    private javax.swing.JTextField txt_rutaguardado;
     // End of variables declaration//GEN-END:variables
 }
