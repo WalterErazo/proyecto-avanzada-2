@@ -32,4 +32,25 @@
    2.3 recibe un cadena de texto que luegue escribe dentro de un archivo llamado TempGraficas.dot que hace posible la grafica de la      estructura, parametriza: datos a escribir.
    
    ![](PR/6.png)
-    
+
+### 3. Class Procesos.
+
+   3.1 parametro: ruta direccion del archivo a leer y returna: un cadena con el archivo completo para mostrarlo en un text area.
+   
+   ![](PR/4.png)
+   
+   3.2 Lee cada dos lineas para poder saber el tipo de estrutura y los datos a conformala, parametriza: ruta direccion del archivo a leer.
+   
+   ![](PR/5.png)
+   
+   3.3 recibe un cadena de texto que luegue escribe dentro de un archivo llamado TempGraficas.dot que hace posible la grafica de la      estructura, parametriza: datos a escribir.
+   
+   ![](PR/6.png)
+
+### 4. Class DemoGraphviz .
+
+   4.1 Grafica el formato TempGraficas.dot que fue previamente modificado segun la estructura deseada.
+   
+   ![](PR/ex.png)
+   
+   
