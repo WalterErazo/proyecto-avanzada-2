@@ -33,7 +33,7 @@ public class FileLoader {
  * @param ruta direccion del archivo a leer
  */
     public void loadFileWithJava7(String ruta) {
-        procesos obj = new procesos();
+        Procesos obj = new Procesos();
         int cont =0;
         String linea1="";
         String linea2="";

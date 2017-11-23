@@ -5,7 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class procesos {
+public class Procesos {
 
     private int contArchivos = 0;
     public FileLoader write = new FileLoader();
@@ -29,7 +29,7 @@ public class procesos {
                     write.writeUsingFileWriter(ingresarStack(partes));
                     draw.createDemoFromDot();
                 } catch (IOException ex) {
-                    Logger.getLogger(procesos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Procesos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             break;
@@ -39,7 +39,7 @@ public class procesos {
                     write.writeUsingFileWriter(ingresarQueue(partes));
                     draw.createDemoFromDot();
                 } catch (IOException ex) {
-                    Logger.getLogger(procesos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Procesos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             break;
@@ -49,7 +49,7 @@ public class procesos {
                     write.writeUsingFileWriter(ingresarlist(partes));
                     draw.createDemoFromDot();
                 } catch (IOException ex) {
-                    Logger.getLogger(procesos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Procesos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             break;
@@ -59,7 +59,7 @@ public class procesos {
                     write.writeUsingFileWriter(ingresarCircularList(partes));
                     draw.createDemoFromDot();
                 } catch (IOException ex) {
-                    Logger.getLogger(procesos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Procesos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             break;
@@ -69,13 +69,20 @@ public class procesos {
                     write.writeUsingFileWriter(ingresarDoubleList(partes));
                     draw.createDemoFromDot();
                 } catch (IOException ex) {
-                    Logger.getLogger(procesos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Procesos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             break;
-            case 'b':
-                JOptionPane.showMessageDialog(null, "btree");
-                break;
+            case 'b': {
+                try {
+                    JOptionPane.showMessageDialog(null, "btree");
+                    write.writeUsingFileWriter(ingresarBtree(partes));
+                    draw.createDemoFromDot();
+                } catch (IOException ex) {
+                    Logger.getLogger(Procesos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            break;
             default:
                 JOptionPane.showMessageDialog(null, "error");
                 break;
@@ -129,6 +136,7 @@ public class procesos {
         cadena += datos[datos.length - 1] + "-- tail" + "}";
         return cadena;
     }
+
     /**
      * escribe el formato para el archivo .dot
      *
@@ -145,8 +153,10 @@ public class procesos {
         cadena += "}";
         return cadena;
     }
+
     /**
      * escribe el formato para el archivo .dot
+     *
      * @param datos elementos que conforma estrutura de una lista doblemente
      * enlasada
      * @return
@@ -160,5 +170,17 @@ public class procesos {
         cadena += datos[datos.length - 1] + "-- tail" + "}";
         return cadena;
     }
-    
+
+    private String ingresarBtree(String datos[]) {
+        String cadena = "graph {";
+        for (int x = 0; x < datos.length -2; x++) {
+            cadena += datos[x] + " -- " + datos[x + 1]+ "; ";
+            cadena += datos[x] + " -- " + datos[x + 2]+ "; ";     
+            x++;
+        }
+        cadena += "}";
+        return cadena;
+    }
+
 }
+
