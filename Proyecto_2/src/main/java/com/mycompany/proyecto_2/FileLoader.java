@@ -28,8 +28,11 @@ public class FileLoader {
             return e.toString();
         }
     }
-
-    public void loadFileWithJava7(String ruta, String guardado) {
+/**
+ * lee cada dos lineas para poder saber el tipo de estrutura y los datos a conformala
+ * @param ruta direccion del archivo a leer
+ */
+    public void loadFileWithJava7(String ruta) {
         procesos obj = new procesos();
         int cont =0;
         String linea1="";
@@ -46,7 +49,7 @@ public class FileLoader {
                  }else if(cont==1){
                      cont=0;
                      linea2=linea;
-                     obj.agragardatos(ruta,guardado,linea1,linea2);
+                     obj.agragardatos(ruta,linea1,linea2);
                  }                         
             }
             fis.close();
@@ -54,10 +57,12 @@ public class FileLoader {
             e.printStackTrace();
         }
     }
-
+/**
+ * recibe un cadena de texto que luegue escribe dentro de un archivo llamado TempGraficas.dot que hace posible la grafica de la estructura
+ * @param data datos a escribir
+ */
     public void writeUsingFileWriter(String data) {
-        File file = new File("/Users/tuxtor/Downloads/salida.txt");
-
+        File file = new File("C:\\Users\\walte\\OneDrive\\Documents\\universidad\\segundo ciclo\\progra. avanzada\\proyecto-avanzada-2/TempGraficas.dot");       
         try (FileWriter fw = new FileWriter(file)) {
             fw.write(data);
         } catch (IOException e) {

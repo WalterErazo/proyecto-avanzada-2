@@ -13,5 +13,6 @@ public class main {
         Principal obj = new Principal();
         obj.setVisible(true);
         obj.setLocationRelativeTo(null);
+        
     }
 }

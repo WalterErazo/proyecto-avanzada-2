@@ -38,12 +38,8 @@
                       <EmptySpace pref="70" max="32767" attributes="0"/>
                       <Component id="btm_aceptar" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="txt_rutaguardado" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -65,11 +61,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="textArea1" min="-2" pref="347" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="txt_rutaguardado" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btm_aceptar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btm_salir" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -130,13 +122,6 @@
       </Events>
     </Component>
     <Component class="java.awt.TextArea" name="textArea1">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txt_rutaguardado">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese la direccion de guardado"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -12,21 +12,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class DemoGraphviz {
-    public void createDemoGraph() throws IOException {
-		Graph g = graph("example1").directed().with(node("A").link(node("B")).link(node("C")));                
-		Graphviz.fromGraph(g).width(200).render(Format.PNG).toFile(new File("C:\\Users\\walte\\Desktop\\example/ex1.png"));
-	}
-	
-	public void createDemoFromDot() throws IOException {
-            /*File file = new File("/Users/tuxtor/Downloads/linked_list.dot");            
-            FileInputStream fis = null;		
-            fis = new FileInputStream(file);		
-            MutableGraph g = Parser.read(fis);
-            Graphviz.fromGraph(g).width(700).render(Format.PNG).toFile(new File("example/ex4-1.png"));*/
-            File file = new File("C:\\Users\\walte\\Desktop\\linked_list.dot");            
-            FileInputStream fis = null;		
-            fis = new FileInputStream(file);		
-            MutableGraph g = Parser.read(fis);
-            Graphviz.fromGraph(g).width(700).render(Format.PNG).toFile(new File("C:\\Users\\walte\\Desktop\\example\\WalterOsoy_1126017.png"));
-        }
+    private int cont=1;    
+    /**
+     * grafica el formato TempGraficas.dot que fue previamente modificado segun la estructura deseada
+     * @throws IOException 
+     */
+    public void createDemoFromDot() throws IOException {        
+        File file = new File("C:\\Users\\walte\\OneDrive\\Documents\\universidad\\segundo ciclo\\progra. avanzada\\proyecto-avanzada-2/TempGraficas.dot");
+        FileInputStream fis = null;
+        fis = new FileInputStream(file);
+        MutableGraph g = Parser.read(fis);
+        Graphviz.fromGraph(g).width(700).render(Format.PNG).toFile(new File("C:\\Users\\walte\\OneDrive\\Documents\\universidad\\segundo ciclo\\progra. avanzada\\proyecto-avanzada-2\\pictures/picture"+cont+".png"));
+        cont ++;
+    }
 }
