@@ -62,7 +62,7 @@
    
    3.7 Escribe el formato para el archivo .dot del Arbol.
    
-   ![](PR/6.png)
+   ![](PR/14.png)
 
 ### 4. Class DemoGraphviz .
 
