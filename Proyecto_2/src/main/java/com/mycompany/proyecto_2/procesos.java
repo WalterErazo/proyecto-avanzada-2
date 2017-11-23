@@ -53,12 +53,26 @@ public class procesos {
                 }
             }
             break;
-            case 'c':
-                JOptionPane.showMessageDialog(null, "circular");
-                break;
-            case 'd':
-                JOptionPane.showMessageDialog(null, "double");
-                break;
+            case 'c': {
+                try {
+                    JOptionPane.showMessageDialog(null, "circular");
+                    write.writeUsingFileWriter(ingresarCircularList(partes));
+                    draw.createDemoFromDot();
+                } catch (IOException ex) {
+                    Logger.getLogger(procesos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            break;
+            case 'd': {
+                try {
+                    JOptionPane.showMessageDialog(null, "double");
+                    write.writeUsingFileWriter(ingresarDoubleList(partes));
+                    draw.createDemoFromDot();
+                } catch (IOException ex) {
+                    Logger.getLogger(procesos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            break;
             case 'b':
                 JOptionPane.showMessageDialog(null, "btree");
                 break;
@@ -70,6 +84,7 @@ public class procesos {
 
     /**
      * escribe el formato para el archivo .dot
+     *
      * @param datos elementos que conforma estrutura de una pila
      * @return
      */
@@ -87,6 +102,7 @@ public class procesos {
 
     /**
      * escribe el formato para el archivo .dot
+     *
      * @param datos elementos que conforma estrutura de una cola
      * @return fromato ya creado
      */
@@ -101,6 +117,7 @@ public class procesos {
 
     /**
      * escribe el formato para el archivo .dot
+     *
      * @param datos elementos que conforma estrutura de una lista simple
      * @return
      */
@@ -112,18 +129,36 @@ public class procesos {
         cadena += datos[datos.length - 1] + "-- tail" + "}";
         return cadena;
     }
-
     /**
      * escribe el formato para el archivo .dot
+     *
      * @param datos elementos que conforma estrutura de una lista circular
      * @return
      */
     private String ingresarCircularList(String datos[]) {
+        String cadena = "graph{ layout=circo; ";
+        for (int x = 0; x < datos.length - 1; x++) {
+            cadena += datos[x] + " -- " + datos[x + 1] + "; ";
+        }
+        cadena += datos[datos.length - 1] + "--" + datos[0];
+        cadena += "tail" + "--" + datos[datos.length - 1];
+        cadena += "}";
+        return cadena;
+    }
+    /**
+     * escribe el formato para el archivo .dot
+     * @param datos elementos que conforma estrutura de una lista doblemente
+     * enlasada
+     * @return
+     */
+    private String ingresarDoubleList(String datos[]) {
         String cadena = "graph{ head--" + datos[0] + "; ";
         for (int x = 0; x < datos.length - 1; x++) {
             cadena += datos[x] + " -- " + datos[x + 1] + "; ";
+            cadena += datos[x + 1] + " -- " + datos[x] + "; ";
         }
         cadena += datos[datos.length - 1] + "-- tail" + "}";
         return cadena;
     }
+    
 }
